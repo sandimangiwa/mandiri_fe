@@ -1,0 +1,74 @@
+.kontakmasuk-title {
+  color: #08205c;
+}
+
+.kontakmasuk-box {
+  color: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.kontakmasuk .danger {
+  background-image: linear-gradient(30deg, #fe4444 0%, #d4155a 100%);
+}
+
+.kontakmasuk .warning {
+  background-image: linear-gradient(30deg, #ffcb01 0%, #fb9c02 100%);
+}
+
+.kontakmasuk .dark {
+  background-image: linear-gradient(30deg, #506874 0%, black 100%);
+}
+
+.kontakmasuk-mail {
+  border-radius: 20px;
+}
+
+.kontakmasuk-mail .online-offline {
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.kontakmasuk-mail .btn_ {
+  color: #08205c;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  width: 100%;
+  border-bottom: 2px solid #08205c;
+  background: white;
+  border: none;
+  border-bottom: 2px solid #08205c;
+}
+
+.kontakmasuk-mail .btn_:hover {
+  border-right: 20px;
+  background-color: #f8f9fa;
+}
+
+.kontakmasuk-mail .pesan {
+  color: #868e96;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.kontakmasuk-mail .pesan:hover {
+  background-color: #f8f9fa;
+}
+
+.kontakmasuk-mail .pesan .nama-customer,
+.kontakmasuk-mail .pesan .isipesan-customer {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kontakmasuk-mail .pesan .nama-customer {
+  color: black;
+}
+
+.kontakmasuk .sub-title {
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.pagination a {
+  color: #868e96;
+}
+/*# sourceMappingURL=kontakmasuk.css.map */

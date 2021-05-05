@@ -1,0 +1,118 @@
+$active: #e6e9ef;
+$primary: #08205c;
+$secondary: #868e96;
+$light: #f8f9fa;
+
+.chat {
+  .name-user {
+    color: $primary;
+  }
+  border-radius: 20px;
+  .avatar {
+    border-radius: 50%;
+  }
+  .isi-chat {
+    padding: 10px;
+    height: 30em;
+    overflow: hidden;
+    overflow-y: auto;
+    // max-height: 60em;
+
+    .customer {
+      text-align: start;
+      margin-right: 4em;
+      .isi-text {
+        background-color: #c4c4c4;
+      }
+    }
+    .admin {
+      text-align: end;
+      margin-left: 4em;
+      .isi-text {
+        color: white;
+        background-color: $primary;
+      }
+    }
+    .customer,
+    .admin {
+      .isi-text {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+
+        margin-bottom: -2px;
+        margin-top: 4px;
+      }
+      .time {
+        font-size: 12px;
+        padding: 4px;
+        color: #c4c4c4;
+      }
+    }
+  }
+  .input-chat {
+    border: 1px solid $primary;
+    border-radius: 10px;
+    padding: 10px;
+    .input-images button {
+      text-align: center;
+      font-size: 22px;
+      color: $primary;
+    }
+    .input-text {
+      #textarea {
+        // height: 3em;
+        // max-height: 6em;
+        // border-radius: 10px;
+        font-size: 14px;
+        border: none;
+        border-radius: 0;
+        border-left: 2px solid $primary;
+        border-right: 2px solid $primary;
+      }
+    }
+    .send-text {
+      //   text-align: center;
+      margin-top: 6px;
+      button {
+        text-align: center;
+        // padding: 10px;
+        border-radius: 50px;
+        background-color: $primary;
+        padding: 6px 8px;
+        font-size: 14px;
+        color: white;
+      }
+    }
+  }
+}
+
+.info-customer {
+  border-radius: 20px;
+  .detail-user {
+    .detail {
+      margin-top: 20px;
+      label {
+        font-size: 14px;
+        color: $secondary;
+      }
+      h6 {
+        color: $primary;
+      }
+    }
+  }
+  .category {
+    label {
+      font-size: 14px;
+    }
+    p {
+      //   width: ;
+      border-radius: 4px;
+      padding: 6px;
+      background-color: #c4c4c4;
+      color: $primary;
+      font-weight: 500;
+      display: inline-block;
+    }
+  }
+}

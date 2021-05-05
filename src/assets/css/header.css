@@ -1,0 +1,26 @@
+.notification {
+  font-size: 18px;
+  padding: 6px;
+  margin: auto;
+  background-color: #f5f6f8;
+  height: 2.5em;
+  width: 2.5em;
+  margin-right: 4px;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid #f5f6f8;
+  cursor: pointer;
+}
+.profile .profile-icon {
+  /* font-size: 18px; */
+  background-color: #f5f6f8;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.profile .profile-icon img {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  object-fit: cover;
+}

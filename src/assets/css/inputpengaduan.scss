@@ -1,0 +1,47 @@
+$active: #e6e9ef;
+$primary: #08205c;
+$secondary: #868e96;
+$light: #f8f9fa;
+// Pengaduan
+.InputPengaduan {
+  &-title {
+    color: $primary;
+  }
+  &-container {
+    border-radius: 20px;
+  }
+  .form-group {
+    margin-bottom: 2em;
+    label {
+      color: $primary;
+      font-weight: 500;
+    }
+    input,
+    select {
+      background-color: $light;
+      border: none;
+      height: 48px;
+    }
+    textarea {
+      background-color: $light;
+      border: none;
+      height: 10em;
+    }
+    input,
+    textarea,
+    select {
+      &::placeholder,
+      &::-webkit-input-placeholder {
+        font-size: 12px;
+      }
+    }
+  }
+  &-btn {
+    width: 100%;
+    color: white;
+    background-color: $primary;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+  }
+}

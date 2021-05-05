@@ -1,0 +1,93 @@
+.sub-title {
+  color: #08205c;
+}
+
+.router-link-exact-active {
+  color: #08205c !important;
+}
+
+.router-link-exact-active .link {
+  background-color: #e6e9ef;
+}
+
+.link {
+  width: 100%;
+  margin-top: 2px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.link .icon {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 30px;
+}
+
+.link:hover {
+  background-color: #e6e9ef;
+  color: #08205c !important;
+}
+
+.router-link {
+  text-decoration: none;
+  color: #868e96;
+}
+
+.sidebar {
+  font-weight: 500;
+  padding-top: 20px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  border-radius: 20px;
+}
+
+.dashboard-title {
+  color: #08205c;
+}
+
+.dashboard-center {
+  border-left: 4px solid #e0e0e0;
+  border-right: 4px solid #e0e0e0;
+}
+
+.dashboard .notification-new {
+  border-radius: 20px;
+}
+
+.dashboard .notification-new .notification-title {
+  color: #08205c;
+}
+
+.dashboard .notification-new .notification-detail img {
+  border-radius: 50%;
+}
+
+.dashboard .notification-new .notification-detail .info-user-detail {
+  font-size: 14px;
+}
+
+.dashboard .notification-new .notification-detail .info-user-detail .name {
+  font-weight: 500;
+  color: #08205c;
+}
+
+.dashboard .notification-new .notification-detail .info-user-detail .isi-chat {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #868e96;
+}
+
+.dashboard .notification-new .notification-detail .info-user-detail .time {
+  margin-top: -15px;
+  color: #868e96;
+}
+/*# sourceMappingURL=dashboard.css.map */

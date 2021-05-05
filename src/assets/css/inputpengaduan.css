@@ -1,0 +1,55 @@
+.InputPengaduan-title {
+  color: #08205c;
+}
+
+.InputPengaduan-container {
+  border-radius: 20px;
+}
+
+.InputPengaduan .form-group {
+  margin-bottom: 2em;
+}
+
+.InputPengaduan .form-group label {
+  color: #08205c;
+  font-weight: 500;
+}
+
+.InputPengaduan .form-group input,
+.InputPengaduan .form-group select {
+  background-color: #f8f9fa;
+  border: none;
+  height: 48px;
+}
+
+.InputPengaduan .form-group textarea {
+  background-color: #f8f9fa;
+  border: none;
+  height: 10em;
+}
+
+.InputPengaduan .form-group input::-webkit-input-placeholder, .InputPengaduan .form-group input::-webkit-input-placeholder,
+.InputPengaduan .form-group textarea::-webkit-input-placeholder,
+.InputPengaduan .form-group textarea::-webkit-input-placeholder,
+.InputPengaduan .form-group select::-webkit-input-placeholder,
+.InputPengaduan .form-group select::-webkit-input-placeholder {
+  font-size: 12px;
+}
+
+.InputPengaduan .form-group input::placeholder, .InputPengaduan .form-group input::-webkit-input-placeholder,
+.InputPengaduan .form-group textarea::placeholder,
+.InputPengaduan .form-group textarea::-webkit-input-placeholder,
+.InputPengaduan .form-group select::placeholder,
+.InputPengaduan .form-group select::-webkit-input-placeholder {
+  font-size: 12px;
+}
+
+.InputPengaduan-btn {
+  width: 100%;
+  color: white;
+  background-color: #08205c;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+}
+/*# sourceMappingURL=inputpengaduan.css.map */

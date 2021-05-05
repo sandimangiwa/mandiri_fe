@@ -1,0 +1,117 @@
+.chat {
+  border-radius: 20px;
+}
+
+.chat .name-user {
+  color: #08205c;
+}
+
+.chat .avatar {
+  border-radius: 50%;
+}
+
+.chat .isi-chat {
+  padding: 10px;
+  height: 30em;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.chat .isi-chat .customer {
+  text-align: start;
+  margin-right: 4em;
+}
+
+.chat .isi-chat .customer .isi-text {
+  background-color: #c4c4c4;
+}
+
+.chat .isi-chat .admin {
+  text-align: end;
+  margin-left: 4em;
+}
+
+.chat .isi-chat .admin .isi-text {
+  color: white;
+  background-color: #08205c;
+}
+
+.chat .isi-chat .customer .isi-text,
+.chat .isi-chat .admin .isi-text {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  margin-bottom: -2px;
+  margin-top: 4px;
+}
+
+.chat .isi-chat .customer .time,
+.chat .isi-chat .admin .time {
+  font-size: 12px;
+  padding: 4px;
+  color: #c4c4c4;
+}
+
+.chat .input-chat {
+  border: 1px solid #08205c;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.chat .input-chat .input-images button {
+  text-align: center;
+  font-size: 22px;
+  color: #08205c;
+}
+
+.chat .input-chat .input-text #textarea {
+  font-size: 14px;
+  border: none;
+  border-radius: 0;
+  border-left: 2px solid #08205c;
+  border-right: 2px solid #08205c;
+}
+
+.chat .input-chat .send-text {
+  margin-top: 6px;
+}
+
+.chat .input-chat .send-text button {
+  text-align: center;
+  border-radius: 50px;
+  background-color: #08205c;
+  padding: 6px 8px;
+  font-size: 14px;
+  color: white;
+}
+
+.info-customer {
+  border-radius: 20px;
+}
+
+.info-customer .detail-user .detail {
+  margin-top: 20px;
+}
+
+.info-customer .detail-user .detail label {
+  font-size: 14px;
+  color: #868e96;
+}
+
+.info-customer .detail-user .detail h6 {
+  color: #08205c;
+}
+
+.info-customer .category label {
+  font-size: 14px;
+}
+
+.info-customer .category p {
+  border-radius: 4px;
+  padding: 6px;
+  background-color: #c4c4c4;
+  color: #08205c;
+  font-weight: 500;
+  display: inline-block;
+}
+/*# sourceMappingURL=chat.css.map */

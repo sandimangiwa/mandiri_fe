@@ -1,0 +1,78 @@
+$active: #e6e9ef;
+$primary: #08205c;
+$secondary: #868e96;
+$light: #f8f9fa;
+$gray: #e0e0e0;
+$linearred: linear-gradient(30deg, rgba(254, 68, 68, 1) 0%, rgba(212, 21, 90, 1) 100%);
+$linearyellow: linear-gradient(30deg, rgba(255, 203, 1, 1) 0%, rgba(251, 156, 2, 1) 100%);
+$lineardark: linear-gradient(30deg, rgba(80, 104, 116, 1) 0%, rgba(0, 0, 0, 1) 100%);
+
+.kontakmasuk {
+  &-title {
+    color: $primary;
+  }
+  &-box {
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .danger {
+    background-image: $linearred;
+  }
+  .warning {
+    background-image: $linearyellow;
+  }
+  .dark {
+    background-image: $lineardark;
+  }
+
+  //   infor chat
+
+  &-mail {
+    border-radius: 20px;
+
+    .online-offline {
+      border-bottom: 1px solid $light;
+    }
+    .btn_ {
+      color: $primary;
+      border-radius: 20px 20px 0 0;
+      padding: 20px;
+      width: 100%;
+      border-bottom: 2px solid $primary;
+      background: white;
+      border: none;
+      border-bottom: 2px solid $primary;
+      &:hover {
+        border-right: 20px;
+        background-color: $light;
+      }
+    }
+    .pesan {
+      color: $secondary;
+      border-bottom: 1px solid $light;
+      &:hover {
+        background-color: $light;
+      }
+      .nama-customer,
+      .isipesan-customer {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // width: 100px;
+      }
+      .nama-customer {
+        color: black;
+      }
+    }
+  }
+  .sub-title {
+    border-bottom: 1px solid $light;
+  }
+}
+
+.pagination {
+  a {
+    color: $secondary;
+  }
+}

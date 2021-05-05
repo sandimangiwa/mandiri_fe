@@ -1,0 +1,16 @@
+$active: #e6e9ef;
+$primary: #08205c;
+$secondary: #868e96;
+$light: #f8f9fa;
+$gray: #e0e0e0;
+$linearred: linear-gradient(30deg, rgba(254, 68, 68, 1) 0%, rgba(212, 21, 90, 1) 100%);
+
+.grafik {
+  &-title {
+    color: $primary;
+  }
+  &-center {
+    border-left: 4px solid $gray;
+    border-right: 4px solid $gray;
+  }
+}

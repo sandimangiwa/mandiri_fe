@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAQG,AAAD,aAAO,CAAC;EACN,KAAK,EARC,OAAO;CASd;;AACA,AAAD,cAAQ,CAAC;EACP,WAAW,EAAE,GAAG,CAAC,KAAK,CARnB,OAAO;EASV,YAAY,EAAE,GAAG,CAAC,KAAK,CATpB,OAAO;CAUX",
+    "sources": [
+        "grafik.scss"
+    ],
+    "names": [],
+    "file": "grafik.css"
+}

@@ -1,0 +1,88 @@
+$active: #e6e9ef;
+$primary: #08205c;
+$secondary: #868e96;
+$light: #f8f9fa;
+$gray: #e0e0e0;
+$linearred: linear-gradient(30deg, rgba(254, 68, 68, 1) 0%, rgba(212, 21, 90, 1) 100%);
+
+.sub-title {
+  color: $primary;
+}
+.router-link-exact-active {
+  .link {
+    background-color: $active;
+  }
+  color: $primary !important;
+}
+.link {
+  width: 100%;
+  margin-top: 2px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 8px;
+  .icon {
+    justify-content: center;
+    display: inline-flex;
+    width: 30px;
+  }
+  &:hover {
+    background-color: $active;
+    color: $primary !important;
+  }
+}
+
+.router-link {
+  text-decoration: none;
+  //   background-color: red;
+  color: $secondary;
+}
+.sidebar {
+  font-weight: 500;
+  padding-top: 20px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+// dashboard
+
+.dashboard {
+  &-container {
+    border-radius: 20px;
+  }
+  &-title {
+    color: $primary;
+  }
+  &-center {
+    border-left: 4px solid $gray;
+    border-right: 4px solid $gray;
+  }
+  .notification-new {
+    border-radius: 20px;
+    .notification-title {
+      color: $primary;
+    }
+    .notification-detail {
+      img {
+        border-radius: 50%;
+      }
+      .info-user-detail {
+        font-size: 14px;
+        .name {
+          font-weight: 500;
+          color: $primary;
+        }
+        .isi-chat {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          // width: 100%;
+          color: $secondary;
+        }
+        .time {
+          margin-top: -15px;
+          color: $secondary;
+        }
+      }
+    }
+  }
+}
