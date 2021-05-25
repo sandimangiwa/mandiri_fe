@@ -71,6 +71,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-@import "../assets/css/inputpengaduan.css";
-</style>

@@ -3,6 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+// css custom
+import "./assets/css/grafik.css";
+import "./assets/css/inputpengaduan.css";
+import "./assets/css/kontakmasuk.css";
+import "./assets/css/dashboard.css";
+import "./assets/css/chat.css";
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
