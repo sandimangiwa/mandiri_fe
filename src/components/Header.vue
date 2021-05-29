@@ -2,7 +2,7 @@
   <div>
     <!-- <div> -->
     <b-navbar class="header fixed-top shadow-sm" type="light" variant="white">
-      <h3 class="mt-2 mr-2" style="cursor:pointer">
+      <h3 v-on:click="togelOpen" class="mt-2 mr-2" style="cursor:pointer">
         <b-icon icon="list" aria-hidden="true"></b-icon>
       </h3>
 

@@ -19,7 +19,22 @@ Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(BootstrapVueIcons);
 Vue.config.productionTip = false;
-
+Vue.mixin({
+  methods: {
+    togelOpen: function() {
+      var width = "Total Width: " + screen.width;
+      console.log(width);
+      var x = document.querySelector(".sidebar");
+      if (x.style.display == "none") {
+        console.log("chage to block");
+        x.style.display = "block";
+      } else {
+        console.log("chage to none");
+        x.style.display = "none";
+      }
+    },
+  },
+});
 new Vue({
   router,
   store,
