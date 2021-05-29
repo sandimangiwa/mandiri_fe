@@ -10,11 +10,11 @@
 
         <div class="col-lg-6 p-5 form-login text-white">
           <form class="login-form " @submit.prevent="login()">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="username">Username</label>
               <input v-model="username" type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="username" required />
               <small v-if="error.username" class="form-text text-danger">We'll never share your email with anyone else.</small>
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="email">Email</label>
               <input v-model="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@email.com" required />
@@ -36,23 +36,38 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   name: "login",
   data() {
     return {
+      // userinfo:{},
       username: "",
       email: "",
       password: "",
       error: {},
     };
   },
-  //   mounted() {
-  //     this.login();
-  //   },
+
+  computed: {
+    ...mapState(["data"]),
+    userinfo: function() {
+      console.log(this.data?.signin);
+      return this.data?.signin;
+    },
+  },
   methods: {
+    ...mapActions(["signin"]),
     login() {
-      this.$router.push("/");
-      console.log();
+      if (this.email != "" && this.password != "") {
+        const data = {
+          email: this.email,
+          password: this.password,
+        };
+        this.signin(data);
+
+        console.log(data);
+      }
     },
   },
 };
@@ -61,7 +76,7 @@ export default {
 <style scoped>
 .signin {
   /* background-color: #20397a; */
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

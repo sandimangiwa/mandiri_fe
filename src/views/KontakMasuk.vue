@@ -3,7 +3,7 @@
     <Header />
     <div class="container-fluid" style="padding-top:70px">
       <div class="row">
-        <div class="sidebar col-lg-2">
+        <div class="sidebar col-lg-2 ">
           <div class="position">
             <Sidebar />
           </div>
@@ -16,68 +16,68 @@
             <!-- Kategori Pendauan -->
             <div class="container-fluid  kontakmasuk-mail bg-white mt-4 pt-3 pb-4">
               <h6 class="text-secondary">Pilih kategori pengaduan</h6>
-              <b-form-select size="md" v-model="selected" :options="options" value-field="item" text-field="name">
+              <!-- <b-form-group class="col-6"> -->
+              <b-form-select class="" size="md" v-model="filter" :options="options" value-field="item" text-field="name" placeholder="Pilih kategori pengaduan . . .">
                 <template #first>
-                  <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+                  <b-form-select-option :value="null">-- none --</b-form-select-option>
                 </template>
               </b-form-select>
+              <!-- </b-form-group> -->
             </div>
 
             <!--Kontak masuk -->
             <div class="container-fluid kontakmasuk-mail bg-white mt-4">
-              <div class="row text-center online-offline">
-                <div class="filter ml-auto m-3 d-flex">
-                  <!-- Search -->
-                  <label class="d-inline-flex align-items-center mr-3">
-                    Search:
-                    <b-form-input type="search" placeholder="Search..." class=" form-control form-control-sm ml-2"></b-form-input>
-                  </label>
-                  <!-- End search -->
-                  <div>
-                    <b-dropdown variant="none" no-caret right>
-                      <template #button-content>
-                        <b-icon icon="sort-down" aria-hidden="true"></b-icon>
-                      </template>
+              <!-- Filter -->
+              <div class="text-center online-offline">
+                <div class="d-flex justify-content-between">
+                  <b-form-group class="m-3">
+                    <b-form-select v-model="perPage" :options="pageOptions" size="sm"></b-form-select>
+                  </b-form-group>
 
-                      <!-- Status -->
-                      <b-dropdown-group header="Status" class="small">
-                        <b-dropdown-item-button>
-                          <b-form-checkbox size="sm">Urgent</b-form-checkbox>
-                        </b-dropdown-item-button>
+                  <div class="filter  m-3 bd-highlight d-flex">
+                    <!-- Search -->
+                    <label class="d-inline-flex align-items-center mr-3">
+                      Search:
+                      <b-form-input v-model="filter" type="search" placeholder="Search..." class=" form-control form-control-sm ml-2"></b-form-input>
+                    </label>
+                    <!-- End search -->
+                    <div>
+                      <b-dropdown variant="none" no-caret right>
+                        <template #button-content>
+                          <b-icon v-b-tooltip.hover="'Filter'" icon="sliders" aria-hidden="true"></b-icon>
+                        </template>
 
-                        <b-dropdown-item-button>
-                          <b-form-checkbox size="sm">Waiting</b-form-checkbox>
-                        </b-dropdown-item-button>
-                      </b-dropdown-group>
-                      <b-dropdown-divider></b-dropdown-divider>
+                        <b-dropdown-form>
+                          <b-form-checkbox-group v-model="filterOn">
+                            <div class="status">
+                              <h6 class="small text-secondary">Status</h6>
+                              <b-form-checkbox size="sm" aria-describedby="Status" value="urgent">Urgent</b-form-checkbox>
+                              <b-form-checkbox size="sm" aria-describedby="Status" value="waiting">Waiting</b-form-checkbox>
+                            </div>
+                            <b-dropdown-divider></b-dropdown-divider>
 
-                      <!-- Prgogres -->
-                      <b-dropdown-group header="Progres" class="small">
-                        <b-dropdown-item-button>
-                          <b-form-checkbox size="sm">Panding</b-form-checkbox>
-                        </b-dropdown-item-button>
-                        <b-dropdown-item-button>
-                          <b-form-checkbox size="sm">Proses</b-form-checkbox>
-                        </b-dropdown-item-button>
-                        <b-dropdown-item-button>
-                          <b-form-checkbox size="sm">Selesai</b-form-checkbox>
-                        </b-dropdown-item-button>
-                      </b-dropdown-group>
-                      <b-dropdown-divider></b-dropdown-divider>
-                      <b-dropdown-item-button variant="info">
-                        <b-icon icon="bootstrap-reboot" aria-hidden="true"></b-icon>
-                        Clear
-                      </b-dropdown-item-button>
-                    </b-dropdown>
+                            <div class="progres">
+                              <h6 class="small text-secondary">Progres</h6>
+                              <b-form-checkbox size="sm" value="panding">Panding</b-form-checkbox>
+                              <b-form-checkbox size="sm" value="proses">Proses</b-form-checkbox>
+                              <b-form-checkbox size="sm" value="selesai">Selesai</b-form-checkbox>
+                            </div>
+                          </b-form-checkbox-group>
+                          <hr />
+                          {{ filterOn }}
+                          <b-button block @click="filterOn = []" style="white-space: nowrap;" variant="outline-info" size="sm"><b-icon icon="sliders" aria-hidden="true"></b-icon> Reset Filters</b-button>
+                        </b-dropdown-form>
+                      </b-dropdown>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <!-- Table -->
               <div class="card ">
-                <b-table responsive fixed :items="items" :fields="fields">
+                <b-table responsive fixed :items="items" :fields="fields" :filter="filter" :per-page="perPage" :current-page="currentPage" :filter-included-fields="filterOn" @filtered="onFiltered">
                   <template #table-colgroup="scope">
-                    <col v-for="field in scope.fields" :key="field.key" :style="{ width: ['action', 'status', 'progres'].includes(field.key) ? '100px' : '300px' }" />
+                    <col v-for="field in scope.fields" :key="field.key" :style="{ width: ['action', 'status', 'progress'].includes(field.key) ? '100px' : '300px' }" />
                   </template>
                   <template #cell(nama)="data">
                     <div class="tabel-response">
@@ -90,31 +90,31 @@
                     </div>
                   </template>
                   <template #cell(status)="data">
-                    <div v-if="data.item.status == 'Urgent'" class="d-inline-flex p-1 rounded text-white danger">
+                    <div v-if="data.item.status == 'urgent'" class="d-inline-flex p-1 rounded text-white danger">
                       <small>{{ data.item.status }}</small>
                     </div>
-                    <div v-if="data.item.status == 'Waiting'" class="d-inline-flex p-1 rounded text-white warning">
+                    <div v-if="data.item.status == 'waiting'" class="d-inline-flex p-1 rounded text-white warning">
                       <small>{{ data.item.status }}</small>
                     </div>
-                    <div v-if="data.item.status == 'Selesai'" class="d-inline-flex p-1 rounded text-white bg-info">
+                    <div v-if="data.item.status == 'selesai'" class="d-inline-flex p-1 rounded text-white bg-info">
                       <small>{{ data.item.status }}</small>
                     </div>
                   </template>
-                  <template #cell(progres)="data">
-                    <div v-if="data.item.progres == 'Pending'" class="d-inline-flex p-1 rounded text-white danger">
-                      <small>{{ data.item.progres }}</small>
+                  <template #cell(progress)="data">
+                    <div v-if="data.item.progress == 'pending'" class="d-inline-flex p-1 rounded text-white danger">
+                      <small>{{ data.item.progress }}</small>
                     </div>
-                    <div v-if="data.item.progres == 'Proses'" class="d-inline-flex p-1 rounded text-white warning">
-                      <small>{{ data.item.progres }}</small>
+                    <div v-if="data.item.progress == 'progress'" class="d-inline-flex p-1 rounded text-white warning">
+                      <small>{{ data.item.progress }}</small>
                     </div>
-                    <div v-if="data.item.progres == 'Selesai'" class="d-inline-flex p-1 rounded text-white bg-info">
-                      <small>{{ data.item.progres }}</small>
+                    <div v-if="data.item.progress == 'selesai'" class="d-inline-flex p-1 rounded text-white bg-info">
+                      <small>{{ data.item.progress }}</small>
                     </div>
                   </template>
 
                   <template #cell(action)="data">
                     <div class="d-flex" :style="{ justifyContent: 'space-evenly' }">
-                      <div class="btn btn-primary btn-sm mx-1" @click="togelOpen(data.item)" v-b-tooltip.hover title="Edit Progres">
+                      <div class="btn btn-small btn-primary btn-sm mx-1" @click="togelOpen(data.item)" v-b-tooltip.hover title="Edit Progres">
                         <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
                       </div>
                     </div>
@@ -122,25 +122,9 @@
                 </b-table>
               </div>
 
-              <!-- load -->
-              <div class="d-flex justify-content-center m-3 ">
-                <nav aria-label="Page navigation">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+              <!-- pagination -->
+              <div class="p-3 ">
+                <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="right" variant="danger" class="customPagination" pills> </b-pagination>
               </div>
             </div>
           </div>
@@ -151,7 +135,7 @@
     <!-- modal Edit -->
     <b-modal v-model="isOpen" title="Edit Progres" hide-footer centered>
       <b-form @submit.prevent="save">
-        <b-form-select v-model="input.progres" :options="['Pending', 'Proses', 'Selesai']" required></b-form-select>
+        <b-form-select v-model="input.progress" :options="['pending', 'progress', 'selesai']" required></b-form-select>
         <div class="d-flex justify-content-end mt-3">
           <b-button variant="outline-secondary mr-2" @click="isOpen = !isOpen">Batal</b-button>
           <b-button variant="primary" type="submit">Edit</b-button>
@@ -164,8 +148,7 @@
 <script>
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-// import axios from "axios";
-import axios from "@/axios";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "KontakMasuk",
   components: {
@@ -176,9 +159,15 @@ export default {
     return {
       isOpen: false,
       selected: null,
+      perPage: 10,
+      pageOptions: [10, 20, 30, 50, 100],
+      row: null,
+      currentPage: 1,
       input: {},
+      filter: null,
+      filterOn: [],
       options: [
-        { item: "onlie", name: "Pengaduan Online" },
+        { item: "online", name: "Pengaduan Online" },
         { item: "offline", name: "Pengaduan Offline" },
       ],
       fields: [
@@ -196,7 +185,7 @@ export default {
           sortable: true,
         },
         {
-          key: "telp",
+          key: "no_telp",
           label: "Nomor Telfon",
           sortable: true,
         },
@@ -205,7 +194,7 @@ export default {
           sortable: true,
         },
         {
-          key: "alamat_now",
+          key: "alamat",
           label: "Alamat Sekarang",
           sortable: true,
         },
@@ -220,7 +209,7 @@ export default {
           sortable: true,
         },
         {
-          key: "progres",
+          key: "progress",
           sortable: true,
         },
         {
@@ -228,32 +217,49 @@ export default {
           sortable: true,
         },
       ],
-      items: [],
       date: "sandimangiwamangiwa",
     };
   },
 
-  created() {
-    this.gettoday();
-    this.getKontakMasuk();
+  mounted() {
+    this.retrieveDataInbox();
   },
+  computed: {
+    ...mapState(["data"]),
+    items: function() {
+      console.log(this.data?.inbox);
+      return this.data?.inbox;
+    },
+    totalRows: {
+      // getter
+      get: function() {
+        if (this.data) {
+          if (this.row) {
+            return this.row;
+          }
+          return this.data?.inbox.length;
+        }
+        return 1;
+      },
+
+      // setter
+      set: function(value) {
+        this.row = value;
+        console.log(value);
+      },
+    },
+  },
+
   methods: {
+    ...mapActions(["retrieveDataInbox", "updateDataInbox"]),
     save() {
       // console.log();
       const data = {
-        id: parseInt(this.input.id),
-        progres: this.input.progres,
+        user_id: parseInt(this.input.user_id),
+        progress: this.input.progress,
       };
       console.log(data);
-      axios
-        .put("", data)
-        .then((response) => {
-          console.log(response);
-          // this.items = response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.updateDataInbox(data);
       this.isOpen = false;
     },
     togelOpen(input) {
@@ -262,20 +268,11 @@ export default {
 
       this.isOpen = true;
     },
-    gettoday() {
-      let today = new Date();
-      this.date = today;
-    },
-    getKontakMasuk() {
-      axios
-        .get("")
-        .then((response) => {
-          this.items = response.data;
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
+    onFiltered(filteredItems) {
+      console.log("tes", filteredItems);
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
   },
 };

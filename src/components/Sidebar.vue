@@ -32,7 +32,17 @@
         <!-- <button type="button" class="btn link"> -->
         <!-- <span class="icon"> <b-icon icon="house" aria-hidden="true"></b-icon></span> -->
         <span class="icon"> <b-icon icon="file-earmark-plus-fill" aria-hidden="true"></b-icon></span>
+
         <span class="title">Input Pengaduan</span>
+        <!-- </button> -->
+      </div>
+    </router-link>
+    <router-link class="router-link text-decoration-none" to="/Notification">
+      <div class="link">
+        <!-- <button type="button" class="btn link"> -->
+        <!-- <span class="icon"> <b-icon icon="house" aria-hidden="true"></b-icon></span> -->
+        <span class="icon"> <b-icon icon="bell-fill" aria-hidden="true"></b-icon></span>
+        <span class="title">Notification</span>
         <!-- </button> -->
       </div>
     </router-link>

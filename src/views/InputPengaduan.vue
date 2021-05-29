@@ -69,5 +69,23 @@ export default {
     Header,
     Sidebar,
   },
+  data() {
+    return {
+      isi_pengaduan: "",
+      kategori: ["kontrak", "aplikasi", "kredit"],
+      kategori_opsion: "",
+      online_offline: "online_offline",
+      status: "",
+      progress: "",
+      alamat: "",
+      no_telp: "",
+      email: "",
+      nama: "",
+      receiver_id: 1,
+      user_id: 1,
+      create_date: "",
+    };
+  },
+  methods: {},
 };
 </script>

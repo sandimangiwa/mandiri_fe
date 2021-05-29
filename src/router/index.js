@@ -29,14 +29,17 @@ const routes = [
   {
     name: "KontakMasuk",
     path: "/KontakMasuk",
-
     component: () => import("../views/KontakMasuk.vue"),
   },
   {
     name: "InputPengaduan",
     path: "/InputPengaduan",
-
     component: () => import("../views/InputPengaduan.vue"),
+  },
+  {
+    name: "Notification",
+    path: "/Notification",
+    component: () => import("../views/Notification.vue"),
   },
   {
     name: "ChatCustomer",
