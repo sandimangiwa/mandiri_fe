@@ -13,7 +13,7 @@
             <div class="Notification p-3">
               <h5 class="Notification-title">Notification</h5>
               <div class="row">
-                <div class="col-4 mb-3" v-for="i in 4" :key="i.id">
+                <div class="col-lg-4 mb-3" v-for="i in 4" :key="i.id">
                   <b-card style="border-radius:20px;">
                     <b-media>
                       <template #aside>
