@@ -15,21 +15,23 @@
               <div class="row text-center">
                 <div class="col">
                   <span class="text-danger">Urgent</span>
-                  <h3 class="text-danger">232.232</h3>
+                  <h3 class="text-danger">12</h3>
                 </div>
                 <div class="col grafik-center text-warning ">
                   <span class="">Waiting</span>
-                  <h3 class="">232.232</h3>
+                  <h3 class="">3</h3>
                 </div>
                 <div class="col text-dark">
-                  <span class="">Spam</span>
-                  <h3 class="r">232.232</h3>
+                  <span class="">Total Pengaduan</span>
+                  <h3 class="r">12</h3>
                 </div>
               </div>
             </div>
             <!-- {{ chartDetile }} -->
             <!-- grafik -->
             <DetailGrafik />
+            <hr />
+            <DetileGrafikTotal />
           </div>
         </div>
       </div>
@@ -41,6 +43,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import DetailGrafik from "@/components/DetailGrafik";
+import DetileGrafikTotal from "@/components/DetailGrafikTotal";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Grafik",
@@ -48,6 +51,7 @@ export default {
     Header,
     Sidebar,
     DetailGrafik,
+    DetileGrafikTotal,
   },
   data() {
     return {

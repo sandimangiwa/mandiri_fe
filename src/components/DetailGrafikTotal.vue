@@ -5,9 +5,9 @@
 
     <!-- {{ xdate }} -->
     <div class="container-fluid InputPengaduan-container bg-white p-4 mt-4">
-      <h6 class="grafik-title">Detail Pengaduan</h6>
+      <h6 class="grafik-title">Total Pengaduan</h6>
       <figure class="highcharts-figure">
-        <div id="container"></div>
+        <div id="container-fluid"></div>
         <div class="highcharts-description d-flex justify-content-center"></div>
       </figure>
     </div>
@@ -21,7 +21,7 @@ import Exporting from "highcharts/modules/exporting";
 Exporting(Highcharts);
 
 export default {
-  name: "DetileGrafik",
+  name: "DetileGrafikTotal",
 
   data() {
     return {
@@ -65,7 +65,7 @@ export default {
     },
 
     setChart() {
-      Highcharts.chart("container", {
+      Highcharts.chart("container-fluid", {
         chart: {
           type: "spline",
         },
@@ -116,22 +116,28 @@ export default {
 
         series: [
           {
-            name: "Urgent",
+            name: "Total Pengaduan",
             data: [34.8, 43.0, 0, 41.4, 64.9, 72.4],
 
-            color: "#dc3545",
+            color: "#343a40",
             accessibility: {
               description: "This is the most used screen reader in 2019",
             },
           },
 
-          {
-            name: "Waiting",
-            data: [6.1, 6.8, 5.3, 27.5, 6.0, 5.5],
+          //   {
+          //     name: "Waiting",
+          //     data: [6.1, 6.8, 5.3, 27.5, 6.0, 5.5],
 
-            dashStyle: "ShortDot",
-            color: "#ffc107",
-          },
+          //     dashStyle: "ShortDot",
+          //     color: "#ffc107",
+          //   },
+          //   {
+          //     name: "Selesai",
+          //     data: [42.6, 51.5, 54.2, 45.8, 20.2, 15.4],
+          //     dashStyle: "ShortDash",
+          //     color: "#17a2b8",
+          //   },
         ],
 
         responsive: {

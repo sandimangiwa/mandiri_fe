@@ -35,6 +35,9 @@
                 <div class="dashboard-container bg-white p-4 mt-4">
                   <DetailGrafik />
                 </div>
+                <div class="dashboard-container bg-white p-4 mt-4">
+                  <DetailGrafikTotal />
+                </div>
               </div>
               <div class="col-lg-4 mb-3">
                 <div class="notification-new bg-white p-3">
@@ -70,12 +73,14 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import DetailGrafik from "@/components/DetailGrafik";
+import DetailGrafikTotal from "@/components/DetailGrafikTotal";
 import { mapActions, mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
     Header,
     Sidebar,
+    DetailGrafikTotal,
     DetailGrafik,
   },
   data() {
