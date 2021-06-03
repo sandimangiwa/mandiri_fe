@@ -39,7 +39,7 @@
               <div class="col-lg-4 mb-3">
                 <div class="notification-new bg-white p-3">
                   <h6 class="notification-title">Notification</h6>
-                  <div class="notification-detail container-fluid">
+                  <div class="notification-detail container-fluid" v-for="notif in NotifLimit" :key="notif.id">
                     <router-link to="/ChatCustomer" class="text-decoration-none">
                       <div class="info-user row">
                         <!-- <img src="../assets/avatar.png" alt="avatar" class="" width="50" height="50" /> -->
@@ -47,21 +47,9 @@
                           <div>
                             <b-icon variant="warning" icon="exclamation-square-fill" aria-hidden="true"></b-icon>
 
-                            <span class="ml-2 name">Joshua tege </span> <br />
-                            <p class="isi-chat">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, neque?</p>
-                            <p class="time"><b-icon icon="clock-history"></b-icon> 12:12</p>
-                          </div>
-                        </div>
-                      </div>
-                    </router-link>
-                    <router-link to="/ChatCustomer" class="text-decoration-none">
-                      <div class="info-user row">
-                        <div class="info-user-detail col-10">
-                          <div>
-                            <b-icon variant="warning" icon="exclamation-square-fill" aria-hidden="true"></b-icon>
-                            <span class="ml-2 name">Joshua tege </span> <br />
-                            <p class="isi-chat">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, neque?</p>
-                            <p class="time"><b-icon icon="clock-history"></b-icon> 12:12</p>
+                            <span class="ml-2 name">{{ notif.nama }} </span> <br />
+                            <p class="isi-chat">{{ notif.isi_pengaduan }}</p>
+                            <p class="time"><b-icon icon="clock-history"></b-icon> {{ notif.Tanggal }}</p>
                           </div>
                         </div>
                       </div>
@@ -82,6 +70,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import DetailGrafik from "@/components/DetailGrafik";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
@@ -93,6 +82,18 @@ export default {
     return {
       chart: 2,
     };
+  },
+  mounted() {
+    this.retrieveDataNotifLimit();
+  },
+  computed: {
+    ...mapState(["data"]),
+    NotifLimit: function() {
+      return this.data?.NotifLimit;
+    },
+  },
+  methods: {
+    ...mapActions(["retrieveDataNotifLimit"]),
   },
 };
 </script>

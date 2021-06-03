@@ -8,6 +8,7 @@ $linearyellow: linear-gradient(30deg, rgba(255, 203, 1, 1) 0%, rgba(251, 156, 2,
 $lineardark: linear-gradient(30deg, rgba(80, 104, 116, 1) 0%, rgba(0, 0, 0, 1) 100%);
 
 .kontakmasuk {
+  z-index: 1;
   &-title {
     color: $primary;
   }
@@ -29,7 +30,7 @@ $lineardark: linear-gradient(30deg, rgba(80, 104, 116, 1) 0%, rgba(0, 0, 0, 1) 1
   //   infor chat
 
   &-mail {
-    border-radius: 20px;
+    border-radius: 0 0 20px 20px;
 
     .online-offline {
       border-bottom: 1px solid $light;

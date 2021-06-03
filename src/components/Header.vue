@@ -18,22 +18,41 @@
                 <div class="notification">
                   <b-icon icon="bell" variant="dark"></b-icon>
                 </div>
-                <small class="text-white bg-danger rounded-circle" style="padding:2px 6px;font-size:10px">1</small>
+                <small v-if="countNotif != 0" class="text-white bg-danger rounded-circle" style="padding:2px 6px;font-size:10px">{{ countNotif }}</small>
               </div>
             </template>
             <div class="notification-data">
-              <router-link to="/ChatCustomer" class="text-decoration-none">
-                <b-dropdown-group id="dropdown-group-1" header="Notification">
-                  <b-dropdown-text style="width: 300px;">
-                    <div class=" p-2 detile-notification">
-                      <b-icon variant="warning" icon="exclamation-square-fill" aria-hidden="true"></b-icon>
-                      <span class="ml-2 name">Joshua tege </span> <br />
-                      <p class="isi-chat text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, neque?</p>
-                      <p class="time text-secondary"><b-icon icon="clock-history"></b-icon> 12:12</p>
+              <b-dropdown-group id="dropdown-group-1" header="Notification">
+                <b-dropdown-text v-if="countNotif != 0" style="width: 300px;">
+                  <span v-for="notif in NotifLimit" :key="notif.id">
+                    <div @click="updateNotif(notif.user_id, notif.id)" class="text-decoration-none " style="cursor:pointer">
+                      <div class="mb-2 p-2 detile-notification border border-info">
+                        <b-icon variant="info" icon="info-square-fill" aria-hidden="true"></b-icon>
+                        <span class="ml-2 name">{{ notif.nama }} </span> <br />
+                        <p class="isi-chat text-secondary">{{ notif.isi_pengaduan }}</p>
+                        <p class="time text-secondary"><b-icon icon="clock-history"></b-icon> {{ notif.Tanggal }}</p>
+                      </div>
                     </div>
-                  </b-dropdown-text>
-                </b-dropdown-group>
-              </router-link>
+                  </span>
+                  <span v-for="notif in NotifWarning" :key="notif.id">
+                    <div @click="updateNotif(notif.user_id, notif.progress)" class="text-decoration-none " style="cursor:pointer">
+                      <div class="mb-2 p-2 detile-notification border border-danger">
+                        <b-icon variant="danger" icon="exclamation-square-fill" aria-hidden="true"></b-icon>
+                        <span class="ml-2 name">{{ notif.nama }} </span> <br />
+                        <p class="isi-chat text-secondary">{{ notif.isi_pengaduan }}</p>
+                        <p class="time text-secondary">
+                          <span class="text-danger border border-danger p-1 rounded">{{ notif.progress }}</span> <b-icon icon="clock-history"></b-icon> {{ notif.tgl_masuk }}
+                        </p>
+                      </div>
+                    </div>
+                  </span>
+                </b-dropdown-text>
+                <b-dropdown-text v-if="countNotif == 0">
+                  <div class="text-center">
+                    <h6 class="text-info">Tidak ada Notification</h6>
+                  </div>
+                </b-dropdown-text>
+              </b-dropdown-group>
             </div>
             <div class="text-center btn-notification mt-2 mb-2">
               <router-link to="/Notification">
@@ -50,9 +69,10 @@
                 <img src="../assets/avatar.png" alt="avatar" class="img-fluid" />
               </div>
             </template>
-            <b-dropdown-item href="#">Action</b-dropdown-item>
-            <b-dropdown-item href="#">Another action</b-dropdown-item>
-            <b-dropdown-item href="#">Logout</b-dropdown-item>
+
+            <b-dropdown-item href="#"><small></small> <b-icon icon="person" variant="dark"></b-icon> Akun</b-dropdown-item>
+            <b-dropdown-item href="#"><b-icon icon="gear" variant="dark"></b-icon> Setting</b-dropdown-item>
+            <b-dropdown-item href="#"><b-icon icon="box-arrow-in-right" variant="dark"></b-icon> Logout</b-dropdown-item>
           </b-nav-item-dropdown>
         </div>
       </b-navbar-nav>
@@ -62,8 +82,54 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Header",
+  data() {
+    return {
+      id: 0,
+      notif: "",
+    };
+  },
+
+  mounted() {
+    this.retrieveDataNotifLimit();
+    this.retrieveDataNotifWarning();
+  },
+  computed: {
+    ...mapState(["data"]),
+    NotifLimit: function() {
+      return this.data?.NotifLimit;
+    },
+    NotifWarning: function() {
+      return this.data?.NotifWarning;
+    },
+    countNotif: function() {
+      if (this.NotifWarning) {
+        let count = (parseInt(this.NotifLimit?.length) || 0) + (parseInt(this.NotifWarning?.length) || 0);
+        // console.log(this.NotifWarning?.length);
+        // console.log("info", parseInt(this.NotifLimit?.length) || 0);
+        return count;
+      }
+      return 0;
+    },
+  },
+  methods: {
+    ...mapActions(["retrieveDataNotifLimit", "updateDataNotifLimit", "retrieveDataNotifWarning"]),
+    updateNotif(id, info) {
+      console.log(id, info);
+      const data = {
+        id: parseInt(info),
+        notif: "TRUE",
+      };
+      if (info == "pending" || info == "progress") {
+        this.$router.push(`/ChatCustomer/${id}`);
+      } else {
+        this.$router.push(`/ChatCustomer/${id}`);
+        this.updateDataNotifLimit(data);
+      }
+    },
+  },
 };
 </script>
 

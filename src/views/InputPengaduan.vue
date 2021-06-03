@@ -12,45 +12,42 @@
           <div class="InputPengaduan p-3">
             <h5 class="InputPengaduan-title">Input Pengaduan</h5>
             <div class="container-fluid InputPengaduan-container bg-white p-4 mt-4">
-              <form>
+              <form @submit.prevent="AddDataOffline">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="name">Nama Lengkap</label>
-                      <input type="text" class="form-control" id="name" placeholder="Nama Lengkap . . ." />
+                      <input v-model="nama_lengkap" type="text" class="form-control" id="name" placeholder="Nama Lengkap . . ." required />
                     </div>
                     <div class="form-group">
                       <label for="number">Nomor Handphone</label>
-                      <input type="number" class="form-control" id="number" placeholder="Nomor Handphone . . ." />
+                      <input v-model="no_telp" type="number" class="form-control" id="number" placeholder="Nomor Handphone . . ." required />
                     </div>
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="Email. . ." />
+                      <input v-model="email" type="email" class="form-control" id="email" placeholder="Email. . ." required />
                     </div>
                     <div class="form-group">
                       <label for="inputState">Kategori Pengaduan</label>
-                      <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                      </select>
+                      <b-form-select v-model="kategori" :options="kategori_options" required></b-form-select>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="ktp">Alamat Lengkap KTP</label>
-                      <input type="text" class="form-control" id="ktp" placeholder="Alamat Lengkap KTP . . ." />
+                      <input v-model="alamat_ktp" type="text" class="form-control" id="ktp" placeholder="Alamat Lengkap KTP . . ." required />
                     </div>
                     <div class="form-group">
                       <label for="sekarang">Alamat Lengkap Sekarang </label>
-                      <input type="text" class="form-control" id="sekarang" placeholder="Alamat Lengkap Sekarang  . . ." />
+                      <input v-model="alamat_sekarang" type="text" class="form-control" id="sekarang" placeholder="Alamat Lengkap Sekarang  . . ." required />
                     </div>
                     <div class="form-group">
                       <label for="isi">Isi Pengaduan</label>
-                      <textarea class="form-control" id="isi" placeholder="Isi Pengaduan . . ."></textarea>
+                      <textarea v-model="isi_pengaduan" class="form-control" id="isi" placeholder="Isi Pengaduan . . ." required></textarea>
                     </div>
                   </div>
                 </div>
-                <button type="button" class="InputPengaduan-btn save">SAVE</button>
+                <button type="submit" class="InputPengaduan-btn save">SAVE</button>
               </form>
             </div>
           </div>
@@ -63,6 +60,7 @@
 <script>
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
+import { mapActions } from "vuex";
 export default {
   name: "InputPengaduan",
   components: {
@@ -71,21 +69,31 @@ export default {
   },
   data() {
     return {
-      isi_pengaduan: "",
-      kategori: ["kontrak", "aplikasi", "kredit"],
-      kategori_opsion: "",
-      online_offline: "online_offline",
-      status: "",
-      progress: "",
-      alamat: "",
-      no_telp: "",
+      nama_lengkap: "",
       email: "",
-      nama: "",
-      receiver_id: 1,
-      user_id: 1,
-      create_date: "",
+      no_telp: "",
+      kategori: "",
+      kategori_options: ["kontrak", "aplikasi", "kredit"],
+      alamat_ktp: "",
+      alamat_sekarang: "",
+      isi_pengaduan: "",
     };
   },
-  methods: {},
+  methods: {
+    ...mapActions(["addDataPengaduanOffline"]),
+    AddDataOffline() {
+      const data = {
+        nama_lengkap: this.nama_lengkap,
+        no_hp: this.no_telp,
+        email: this.email,
+        kategori: this.kategori,
+        alamat_ktp: this.alamat_ktp,
+        alamat_sekarang: this.alamat_sekarang,
+        isi_pengaduan: this.isi_pengaduan,
+      };
+      console.log(data);
+      this.addDataPengaduanOffline(data);
+    },
+  },
 };
 </script>

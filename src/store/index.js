@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import axios from "@/axios";
+import axios from "@/axios";
 import router from "@/router";
-import axios from "axios";
+// import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -24,12 +24,49 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    signup({ commit }, payload) {
+      commit("loading");
+      axios
+        .post("Auth", payload)
+        .then((res) => {
+          router.push("/Login");
+          commit("success", { signup: res?.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    signin({ commit }, payload) {
+      commit("loading");
+      axios
+        .post("Auth/login", payload)
+        .then((res) => {
+          commit("success", { signin: res?.data });
+          if (res?.data.status == true) {
+            router.push("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     retrieveDataInbox({ commit }) {
       commit("loading");
       axios
         .get("PengaduanAdmin")
         .then((res) => {
-          commit("success", { inbox: res?.data });
+          commit("success", { inbox: res?.data.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    retrieveDataInboxOffline({ commit }) {
+      commit("loading");
+      axios
+        .get("PengaduanAdmin/offline")
+        .then((res) => {
+          commit("success", { offline: res?.data.data });
         })
         .catch((err) => {
           console.log(err);
@@ -62,8 +99,8 @@ export default new Vuex.Store({
     retrieveDataGrafik({ commit }) {
       commit("loading");
       axios
-        .get("https://609b7fd72b549f00176e38c5.mockapi.io/api/Grafik")
-        // .get("Grafik")
+        // .get("https://609b7fd72b549f00176e38c5.mockapi.io/api/Grafik")
+        .get("Grafik")
         .then((res) => {
           commit("success", { grafik: res?.data });
         })
@@ -71,31 +108,128 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-    signup({ commit }, payload) {
+    retrieveDataNotifAll({ commit }) {
       commit("loading");
       axios
-        .post("Auth", payload)
+        .get("notif")
+        // .get("Grafik")
         .then((res) => {
-          router.push("/Login");
-          commit("success", { signup: res?.data });
+          commit("success", { NotifAll: res?.data.data });
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    signin({ commit }, payload) {
+    retrieveDataNotifWarning({ commit }) {
       commit("loading");
       axios
-        .post("Auth/login", payload)
+        .get("notif/Warning")
+        // .get("Grafik")
         .then((res) => {
-          commit("success", { signin: res?.data });
-          if (res?.data.status == true) {
-            router.push("/");
-          }
+          commit("success", { NotifWarning: res?.data.data });
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    retrieveDataNotifLimit({ commit }) {
+      commit("loading");
+      axios
+        .get("notif/NotifLimit")
+        // .get("Grafik")
+        .then((res) => {
+          commit("success", { NotifLimit: res?.data.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    updateDataNotifLimit({ commit }, payload) {
+      commit("loading");
+      console.log(payload);
+      axios
+        .put("notif/NotifLimit/", payload)
+        // .get("Grafik")
+        .then((res) => {
+          console.log(res);
+          commit("success", {});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    deleteDataNotifInbox({ commit }, payload) {
+      commit("loading");
+      axios
+        .put("notif", payload)
+        // .get("Grafik")
+        .then((res) => {
+          console.log(res.data);
+          commit("success", {});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    retrieveDataChat({ commit }, payload) {
+      commit("loading");
+      // this.$forceUpdate();
+      console.log(payload);
+      let id = "";
+      if (payload) {
+        id = payload;
+      } else if (router.currentRoute.params.id) {
+        id = router.currentRoute.params.id;
+      }
+      console.log(router.currentRoute.params.id);
+      console.log(id);
+      axios
+        .get("PengaduanCustomer/?user_id=" + router.currentRoute.params.id)
+        // .get("Grafik")
+        .then((res) => {
+          commit("success", { chat: res?.data.data, data_user: res?.data.data_user });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    addDataChat({ commit }, payload) {
+      commit("loading");
+      // this.$forceUpdate();
+
+      axios
+        .post("PengaduanCustomer", payload)
+        // .get("Grafik")
+        .then((res) => {
+          axios
+            .get("PengaduanCustomer/?user_id=" + payload.receiver_id)
+            // .get("Grafik")
+            .then((res) => {
+              commit("success", { chat: res?.data.data, data_user: res?.data.data_user });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          console.log(res.data);
+          commit("success", {});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    addDataPengaduanOffline({ commit, payload }) {
+      axios
+        .get("PengaduanAdmin/offline/", payload)
+        // .get("Grafik")
+        .then((res) => {
+          console.log(res.data);
+          commit("success", {});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    // this.$route.params.id
   },
 });

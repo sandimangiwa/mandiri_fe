@@ -2,6 +2,7 @@ import axios from "axios";
 // axios("http://pegiatkerja.com/");
 const ax = axios.create({
   baseURL: "http://mtfadmin.pegiatkerja.com/",
+  // baseURL: "http://localhost/CS_BE/",
   //   headers: {
   //       Accept: "application/json",
   //       "Content-Type": "application/json",

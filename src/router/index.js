@@ -29,7 +29,7 @@ const routes = [
   {
     name: "KontakMasuk",
     path: "/KontakMasuk",
-    component: () => import("../views/KontakMasuk.vue"),
+    component: () => import("../views/Inbox/index.vue"),
   },
   {
     name: "InputPengaduan",
@@ -43,8 +43,7 @@ const routes = [
   },
   {
     name: "ChatCustomer",
-    path: "/ChatCustomer",
-
+    path: "/ChatCustomer/:id",
     component: () => import("../views/ChatCustomer.vue"),
   },
 ];
