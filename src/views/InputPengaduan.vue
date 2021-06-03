@@ -91,7 +91,6 @@ export default {
         alamat_sekarang: this.alamat_sekarang,
         isi_pengaduan: this.isi_pengaduan,
       };
-      console.log(data);
       this.addDataPengaduanOffline(data);
     },
   },

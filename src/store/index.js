@@ -218,9 +218,10 @@ export default new Vuex.Store({
         });
     },
 
-    addDataPengaduanOffline({ commit, payload }) {
+    addDataPengaduanOffline({ commit }, payload) {
+      console.log(payload);
       axios
-        .get("PengaduanAdmin/offline/", payload)
+        .post("PengaduanAdmin/offline/", payload)
         // .get("Grafik")
         .then((res) => {
           console.log(res.data);
