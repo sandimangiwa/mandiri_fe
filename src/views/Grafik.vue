@@ -15,15 +15,15 @@
               <div class="row text-center">
                 <div class="col">
                   <span class="text-danger">Urgent</span>
-                  <h3 class="text-danger">12</h3>
+                  <h3 class="text-danger">9</h3>
                 </div>
                 <div class="col grafik-center text-warning ">
                   <span class="">Waiting</span>
-                  <h3 class="">3</h3>
+                  <h3 class="">10</h3>
                 </div>
                 <div class="col text-dark">
                   <span class="">Total Pengaduan</span>
-                  <h3 class="r">12</h3>
+                  <h3 class="r">19</h3>
                 </div>
               </div>
             </div>

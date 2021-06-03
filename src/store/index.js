@@ -27,7 +27,7 @@ export default new Vuex.Store({
     signup({ commit }, payload) {
       commit("loading");
       axios
-        .post("Auth", payload)
+        .post("Auth/Regist", payload)
         .then((res) => {
           router.push("/Login");
           commit("success", { signup: res?.data });
@@ -39,7 +39,7 @@ export default new Vuex.Store({
     signin({ commit }, payload) {
       commit("loading");
       axios
-        .post("Auth/login", payload)
+        .post("Auth/Login", payload)
         .then((res) => {
           commit("success", { signin: res?.data });
           if (res?.data.status == true) {
