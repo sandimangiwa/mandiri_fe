@@ -8,10 +8,10 @@
             <Sidebar />
           </div>
         </div>
-        <div class="col-lg-10 ">
+        <div class="col-lg-10">
           <h5 class="kontakmasuk-title pt-4 pl-3">Kontak Masuk</h5>
 
-          <Tabs class="card p-3">
+          <Tabs class=" content p-3">
             <TabItem name="Online">
               <DataTable :tableData="tableData" :tableHeader="tableHeader" />
             </TabItem>
@@ -160,6 +160,7 @@ export default {
 <style>
 .tabs {
   background-color: #f5f6f8 !important;
+  height: 200% !important;
   border: none;
 }
 .tab__pagination {

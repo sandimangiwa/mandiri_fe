@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- grafik -->
-    {{ chartDetile }}
+    <!-- {{ chartDetile }}
 
-    {{ xdate }}
+    {{ xdate }} -->
     <div class="container-fluid InputPengaduan-container bg-white p-4 mt-4">
       <h6 class="grafik-title">Jumlah Pengaduan</h6>
       <figure class="highcharts-figure">
