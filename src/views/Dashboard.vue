@@ -18,15 +18,15 @@
                   <div class="row text-center">
                     <div class="col">
                       <span class="text-danger">Urgent</span>
-                      <h3 class="text-danger">232.232</h3>
+                      <h3 class="text-danger">9</h3>
                     </div>
-                    <div class="col dashboard-center text-warning ">
+                    <div class="col grafik-center text-warning ">
                       <span class="">Waiting</span>
-                      <h3 class="">232.232</h3>
+                      <h3 class="">10</h3>
                     </div>
                     <div class="col text-dark">
-                      <span class="">Spam</span>
-                      <h3 class="r">232.232</h3>
+                      <span class="">Total Pengaduan</span>
+                      <h3 class="r">19</h3>
                     </div>
                   </div>
                 </div>
@@ -42,22 +42,28 @@
               <div class="col-lg-4 mb-3">
                 <div class="notification-new bg-white p-3">
                   <h6 class="notification-title">Notification</h6>
-                  <div class="notification-detail container-fluid" v-for="notif in NotifLimit" :key="notif.id">
-                    <router-link to="/ChatCustomer" class="text-decoration-none">
-                      <div class="info-user row">
-                        <!-- <img src="../assets/avatar.png" alt="avatar" class="" width="50" height="50" /> -->
-                        <div class="info-user-detail col">
-                          <div>
-                            <b-icon variant="warning" icon="exclamation-square-fill" aria-hidden="true"></b-icon>
-
-                            <span class="ml-2 name">{{ notif.nama }} </span> <br />
-                            <p class="isi-chat">{{ notif.isi_pengaduan }}</p>
-                            <p class="time"><b-icon icon="clock-history"></b-icon> {{ notif.Tanggal }}</p>
-                          </div>
-                        </div>
+                  <span v-for="notif in NotifLimit" :key="notif.id">
+                    <div @click="updateNotif(notif.user_id, notif.id)" class="text-decoration-none " style="cursor:pointer">
+                      <div class="mb-2 p-2 detile-notification border border-info">
+                        <b-icon variant="info" icon="info-square-fill" aria-hidden="true"></b-icon>
+                        <span class="ml-2 name">{{ notif.nama }} </span> <br />
+                        <p class="isi-chat text-secondary">{{ notif.isi_pengaduan }}</p>
+                        <p class="time text-secondary"><b-icon icon="clock-history"></b-icon> {{ notif.Tanggal }}</p>
                       </div>
-                    </router-link>
-                  </div>
+                    </div>
+                  </span>
+                  <span v-for="notif in NotifWarning" :key="notif.id">
+                    <div @click="updateNotif(notif.user_id, notif.progress)" class="text-decoration-none " style="cursor:pointer">
+                      <div class="mb-2 p-2 detile-notification border border-danger">
+                        <b-icon variant="danger" icon="exclamation-square-fill" aria-hidden="true"></b-icon>
+                        <span class="ml-2 name">{{ notif.nama }} </span> <br />
+                        <p class="isi-chat text-secondary">{{ notif.isi_pengaduan }}</p>
+                        <p class="time text-secondary">
+                          <span class="text-danger border border-danger p-1 rounded">{{ notif.progress }}</span> <b-icon icon="clock-history"></b-icon> {{ notif.tgl_masuk }}
+                        </p>
+                      </div>
+                    </div>
+                  </span>
                 </div>
               </div>
             </div>
@@ -96,10 +102,58 @@ export default {
     NotifLimit: function() {
       return this.data?.NotifLimit;
     },
+    NotifWarning: function() {
+      return this.data?.NotifWarning;
+    },
   },
   methods: {
-    ...mapActions(["retrieveDataNotifLimit"]),
+    ...mapActions(["retrieveDataNotifLimit", "updateDataNotifLimit", "retrieveDataNotifWarning"]),
+    updateNotif(id, info) {
+      console.log(id, info);
+      const data = {
+        id: parseInt(info),
+        notif: "TRUE",
+      };
+      if (info == "pending" || info == "progress") {
+        this.$router.push(`/ChatCustomer/${id}`);
+      } else {
+        this.$router.push(`/ChatCustomer/${id}`);
+        this.updateDataNotifLimit(data);
+        this.retrieveDataNotifLimit();
+      }
+    },
   },
 };
 </script>
-<style></style>
+<style scoped>
+.notification-info {
+  position: relative;
+}
+.notification-info small {
+  position: absolute;
+  top: 0;
+}
+
+.detile-notification {
+  border-radius: 10px;
+  background-color: #08205c17;
+  height: 6em;
+  font-size: 13px;
+}
+
+.detile-notification .name {
+  font-weight: 500;
+  color: black;
+}
+.detile-notification .isi-chat {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detile-notification .time {
+  margin-top: -14px;
+  font-size: 11px;
+  /* color: ; */
+}
+</style>

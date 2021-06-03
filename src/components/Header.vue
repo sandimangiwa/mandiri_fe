@@ -7,7 +7,9 @@
       </h3>
 
       <b-navbar-brand class=" text-center p-0 m-0" href="#">
-        <img src="../assets/logo.png" width="100" alt="Logo MTF" class="img-fluid" />
+        <router-link to="/">
+          <img src="../assets/logo.png" width="100" alt="Logo MTF" class="img-fluid" />
+        </router-link>
       </b-navbar-brand>
 
       <b-navbar-nav class=" ml-auto">
@@ -127,6 +129,7 @@ export default {
       } else {
         this.$router.push(`/ChatCustomer/${id}`);
         this.updateDataNotifLimit(data);
+        this.retrieveDataNotifLimit();
       }
     },
   },

@@ -148,7 +148,7 @@ export default new Vuex.Store({
       commit("loading");
       console.log(payload);
       axios
-        .put("notif/NotifLimit/", payload)
+        .put("notif/NotifLimit", payload)
         // .get("Grafik")
         .then((res) => {
           console.log(res);
